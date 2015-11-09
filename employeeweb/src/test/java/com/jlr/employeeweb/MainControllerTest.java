@@ -6,13 +6,13 @@ import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 
-import com.jlr.employeeweb.controller.HomeController;
+import com.jlr.employeeweb.controller.MainController;
 
-public class HomeControllerTest {
+public class MainControllerTest {
 
 	@Test
 	public void testController() {
-		HomeController controller = new HomeController();
+		MainController controller = new MainController();
 		Model model = new ExtendedModelMap();
 		Assert.assertEquals("home",controller.home(model));
 		

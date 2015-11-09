@@ -41,7 +41,7 @@ public class MainController {
 			System.out.println("Manager First Name:[] " + (dept.getManager() != null ? dept.getManager().getFirstName() : "No_Manager" ));			
 		}
 		
-		return "home";
+		return "welcome";
 	}
 
 }

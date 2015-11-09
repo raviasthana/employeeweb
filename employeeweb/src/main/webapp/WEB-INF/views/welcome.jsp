@@ -6,8 +6,15 @@
 </head>
 <body>
 <h1> 
-	Hello world!
+	HR Application
 </h1>
-${controllerMessage}
+<p>Welcome to HR application. Please use the following links to retrieve employee information.
+
+<ul>
+	<li>Get list of all existing employees</li>
+	<li>Salary Comparison</li>
+</ul>
+
+<!-- ${controllerMessage} -->
 </body>
 </html>
