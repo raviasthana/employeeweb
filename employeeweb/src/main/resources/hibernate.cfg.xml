@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+  ~ Hibernate, Relational Persistence for Idiomatic Java
+  ~
+  ~ License: GNU Lesser General Public License (LGPL), version 2.1 or later.
+  ~ See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+  -->
+  
+<!DOCTYPE hibernate-configuration PUBLIC
+       "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+       "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+        
+<hibernate-configuration>  
+	<session-factory>	
+	    <property name="connection.datasource">java:comp/env/jdbc/employeeWebDatasource</property>
+		<property name="hibernate.default_schema">HR</property>
+
+    	<!-- Enable Hibernate's automatic session context management -->
+    	<property name="current_session_context_class">thread</property>
+
+    	<!-- Echo all executed SQL to stdout -->
+    	<property name="show_sql">true</property>
+	
+		<!-- Hibernate mappings -->
+    	<!-- <mapping resource="hr.hbm.xml"></mapping> -->
+    	<mapping class="com.jlr.employeeweb.entity.Country" />
+    	<mapping class="com.jlr.employeeweb.entity.Department" />
+    	<mapping class="com.jlr.employeeweb.entity.Employee" />
+    	<mapping class="com.jlr.employeeweb.entity.Job" />
+    	<mapping class="com.jlr.employeeweb.entity.JobHistory" />
+    	<mapping class="com.jlr.employeeweb.entity.Location" />
+    	<mapping class="com.jlr.employeeweb.entity.Region" />
+  </session-factory>
+</hibernate-configuration>
