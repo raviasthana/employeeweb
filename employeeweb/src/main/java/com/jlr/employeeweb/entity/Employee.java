@@ -54,7 +54,7 @@ public class Employee implements Serializable {
 	@OneToMany(mappedBy="manager")
 	private Set<Employee> subordinates = new HashSet<>();
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="DEPARTMENT_ID")
 	private Department department;
 	

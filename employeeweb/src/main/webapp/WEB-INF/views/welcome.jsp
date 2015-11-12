@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>HR Home</title>
+	<link href="../../resources/css/employeeweb.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <h1> 
