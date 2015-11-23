@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -19,8 +20,19 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Table(name="EMPLOYEES")
+@JsonIgnoreProperties({"manager","location","country","region","handler"})
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@employeeId")
 public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -43,22 +55,20 @@ public class Employee implements Serializable {
 	@Column(name="COMMISSION_PCT")
 	private BigDecimal commissionPct;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="JOB_ID", nullable=false)
 	private Job job;
 	
+	@JsonIgnoreProperties({"manager"})
 	@ManyToOne(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
 	@JoinColumn(name="MANAGER_ID", nullable=true)
 	private Employee manager;
-	
-	@OneToMany(mappedBy="manager")
-	private Set<Employee> subordinates = new HashSet<>();
 	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="DEPARTMENT_ID")
 	private Department department;
 	
-	@OneToMany(mappedBy="employee")
+	@OneToMany(mappedBy="employee", fetch=FetchType.EAGER)
 	private Set<JobHistory> jobHistory = new HashSet<>();
 	
 	public Set<JobHistory> getJobHistory() {
@@ -67,12 +77,6 @@ public class Employee implements Serializable {
 	public void setJobHistory(Set<JobHistory> jobHistory) {
 		this.jobHistory = jobHistory;
 	}
-	public Set<Employee> getSubordinates() {
-		return subordinates;
-	}
-	public void setSubordinates(Set<Employee> subordinates) {
-		this.subordinates = subordinates;
-	}	
 
 	public EmployeeId getEmployeeId() {
 		return employeeId;

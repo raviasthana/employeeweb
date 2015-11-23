@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jlr.employeeweb.entity.Employee;
 import com.jlr.employeeweb.service.EmployeeService;
@@ -59,5 +61,12 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		
 		return "employeeList";
+	}
+	
+	@RequestMapping(value="/{employeeId}/jobhistory", method=RequestMethod.GET)
+	public @ResponseBody Employee jobHistory(@PathVariable long employeeId){
+
+		Employee emp = employeeService.getEmployee(employeeId);
+		return emp;
 	}
 }

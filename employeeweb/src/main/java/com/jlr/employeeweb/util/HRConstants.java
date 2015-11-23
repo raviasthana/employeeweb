@@ -8,6 +8,6 @@ public class HRConstants {
 	 */
 	private HRConstants() {}
 	
-	public static final int PAGE_SHOW_SIZE = 20;
+	public static final int PAGE_SHOW_SIZE = 10;
 	public static final int PAGINATAION_SIZE = PAGE_SHOW_SIZE + 1;
 }

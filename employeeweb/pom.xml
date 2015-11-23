@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.jlr</groupId>
 	<artifactId>employeeweb</artifactId>
@@ -11,6 +12,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>6.1.4</jetty.version>
 		<spring.version>3.2.2.RELEASE</spring.version>
+		<hibernate.version>3.6.6.Final</hibernate.version>
+		<version.jackson.core>2.6.3</version.jackson.core>
 		<slf4j.version>1.5.10</slf4j.version>
 		<java.version>1.7</java.version>
 		<junit.version>4.8.2</junit.version>
@@ -39,11 +42,35 @@
 
 		<!-- JPA Persistence Dependencies -->
 
+		<!-- Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${version.jackson.core}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${version.jackson.core}</version>
+		</dependency>
+
+		<dependency>
+  			<groupId>com.fasterxml.jackson.datatype</groupId>
+  			<artifactId>jackson-datatype-hibernate4</artifactId>
+  			<version>${version.jackson.core}</version>
+		</dependency>    
+		
+		<dependency>
+  			<groupId>com.fasterxml.jackson.module</groupId>
+  			<artifactId>jackson-module-jaxb-annotations</artifactId>
+  			<version>${version.jackson.core}</version>
+		</dependency>
+		
+		<!-- hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>3.6.0.Final</version>
-			<scope>compile</scope>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<dependency>
@@ -51,6 +78,13 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 			<version>1.0.0.Final</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<!-- Dependency for ehcache -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
 
 		<!-- Spring Dependencies -->
@@ -149,6 +183,7 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>${ojdbc6.version}</version>
 		</dependency>
+
 	</dependencies>
 
 	<repositories>
@@ -187,24 +222,24 @@
 
 			<!-- Plugin to run and test through maven -->
 			<plugin>
-  				<groupId>org.eclipse.jetty</groupId>
-    			<artifactId>jetty-maven-plugin</artifactId>
-    			<version>9.0.3.v20130506</version>
-    			<configuration>
-       				<jettyXml>jetty/jetty.xml</jettyXml>
-       				<httpConnector>
-          				<port>${jetty.port}</port>
-       				</httpConnector>
-    			</configuration>
-    			<dependencies>
-       				<dependency>
-          				<groupId>com.oracle</groupId>
-          				<artifactId>ojdbc6</artifactId>
-          				<version>${ojdbc6.version}</version>
-          				<type>jar</type>
-       				</dependency>
-    			</dependencies>
- 			</plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.0.3.v20130506</version>
+				<configuration>
+					<jettyXml>jetty/jetty.xml</jettyXml>
+					<httpConnector>
+						<port>${jetty.port}</port>
+					</httpConnector>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.oracle</groupId>
+						<artifactId>ojdbc6</artifactId>
+						<version>${ojdbc6.version}</version>
+						<type>jar</type>
+					</dependency>
+				</dependencies>
+			</plugin>
 
 			<!-- Ensures we are compiling at 1.7 level -->
 			<plugin>

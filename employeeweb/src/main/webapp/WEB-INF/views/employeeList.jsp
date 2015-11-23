@@ -4,6 +4,7 @@
 <html>
 <head>
 	<title>Employee List</title>
+	<!-- <link href="../../resources/css/featherlight.min.css" rel="stylesheet" type="text/css">  -->
 	<link href="../../resources/css/employeeweb.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -32,7 +33,7 @@
 						<td>${employee.email}</td>
 						<td>${employee.phoneNumber}</td>
 						<td>${employee.job.jobTitle}</td>
-						<td><a href="#">Job History</a></td>
+						<td><a href="#" onclick="viewEmployeeJobProfile('/hrweb/employee','${employee.employeeId.id}')">Job History</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -59,6 +60,24 @@
 		<p>No employee records found
 	</c:otherwise>
 </c:choose>
+
+	<!-- START - Lightbox -->
+	<div id="shadowing"></div>
+	<div id="box">
+		<div id="boxheader">
+			<span id="boxtitle" style="font-size: 16px;"><b id="jh_header"></b></span>
+			<span id="boxclose"><a href="#" onclick="closebox()"><b>Close</b></a></span>
+		</div>
+		<div id="boxcontent">
+			<div id="job_history"></div>
+		</div>
+	</div>
+	<!-- END - Lightbox -->
+
+	<script src="../../resources/js/jquery-1.11.1.min.js"></script>
+	<script src="../../resources/js/employeeweb.js"></script>
+
+	<!-- <script src="../../resources/js/featherlight.min.js" type="text/javascript" charset="utf-8"></script> -->
 
 </body>
 </html>

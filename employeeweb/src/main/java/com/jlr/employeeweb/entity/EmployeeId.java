@@ -11,16 +11,22 @@ public class EmployeeId implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name="EMPLOYEE_ID")
-	private long employeeId;
+	private long id;
 
-	public long getEmployeeId() {
-		return employeeId;
+	public long getId() {
+		return id;
 	}
 
-	public void setEmployeeId(long employeeId) {
-		this.employeeId = employeeId;
+	public void setId(long id) {
+		this.id = id;
 	}
 	
+	public EmployeeId() {}
+	
+	public EmployeeId(long id) {
+		this.id = id;
+	}
+
 	//Component type used as identifier must implement equals() and hashCode()
 	
 	@Override
@@ -28,13 +34,13 @@ public class EmployeeId implements Serializable {
 		if(obj == this) return true;
 		if(!(obj instanceof EmployeeId)) return false;
 		
-		return (((EmployeeId)obj).getEmployeeId() == this.employeeId);
+		return (((EmployeeId)obj).getId() == this.id);
 	}
 	
 	@Override
 	public int hashCode() {
 		int hashCode = 17;
-		hashCode = hashCode * 31 + new Long(employeeId).hashCode();
+		hashCode = hashCode * 31 + new Long(id).hashCode();
 		return hashCode;
 	}
 }

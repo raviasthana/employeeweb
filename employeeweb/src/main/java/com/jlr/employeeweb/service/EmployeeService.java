@@ -6,6 +6,7 @@ import com.jlr.employeeweb.entity.Employee;
 
 public interface EmployeeService {
 	
+	Employee getEmployee(long employeeId);
 	List<Employee> getAllEmployees();
 	List<Employee> getEmployeesPaginated(int pageNumber, int pageSize);
 }

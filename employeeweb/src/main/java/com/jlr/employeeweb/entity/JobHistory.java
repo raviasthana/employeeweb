@@ -3,6 +3,7 @@ package com.jlr.employeeweb.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -17,8 +18,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
+@Cacheable
+@Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Table(name="JOB_HISTORY")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jobId")
 public class JobHistory implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,17 +48,18 @@ public class JobHistory implements Serializable {
 	@Column(name="END_DATE")
 	private Date endDate;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="JOB_ID", nullable=false)
 	private Job job;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="DEPARTMENT_ID")
 	private Department department;
 	
 	@MapsId("employeeId")
 	@JoinColumns({
-		@JoinColumn(name="JHIST_EMP_FK", referencedColumnName="EMPLOYEE_ID")
+		@JoinColumn(name="EMPLOYEE_ID")
+		//@JoinColumn(name="JHIST_EMP_FK", referencedColumnName="EMPLOYEE_ID")
 	})
 	@ManyToOne(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
 	private Employee employee;
