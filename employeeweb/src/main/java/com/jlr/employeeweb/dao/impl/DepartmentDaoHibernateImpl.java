@@ -2,6 +2,7 @@ package com.jlr.employeeweb.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.jlr.employeeweb.dao.DepartmentDao;
@@ -17,4 +18,18 @@ public class DepartmentDaoHibernateImpl
 		return getAll();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> getAverageSalary(List<Long> deptIds) {
+		
+		Query query = currentSession().createQuery("select d.departmentName, avg(e.salary) " +
+											"from Employee e INNER JOIN e.department d " +
+											"where d.departmentId in (:departmentIds) " +
+											"group by d.departmentName");
+		
+		query.setParameterList("departmentIds", deptIds);
+		
+		return query.list();
+	}
+	
 }

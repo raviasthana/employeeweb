@@ -7,4 +7,5 @@ import com.jlr.employeeweb.entity.Department;
 public interface DepartmentService {
 	
 	List<Department> getAllDepartments();
+	List<Object> getAverageSalary(List<Long> deptIds);
 }

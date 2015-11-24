@@ -14,7 +14,7 @@
 
 <ul>
 	<li><a href="<c:url value="employee" />">Get list of all existing employees</a></li>
-	<li>Salary Comparison</li>
+	<li><a href="<c:url value="department" />">Salary Comparison</a></li>
 </ul>
 
 <!-- ${controllerMessage} -->

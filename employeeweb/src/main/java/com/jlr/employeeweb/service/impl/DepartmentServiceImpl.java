@@ -20,4 +20,9 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return departmentDao.getAllDepartments();
 	}
 
+	@Override
+	public List<Object> getAverageSalary(List<Long> deptIds) {
+		return departmentDao.getAverageSalary(deptIds);
+	}
+
 }

@@ -1,12 +1,12 @@
 function viewEmployeeJobProfile(urlPrefix,empId){
+	
 	var url = urlPrefix + '/' + empId + "/jobhistory";
 	$.getJSON(url, null, function(employeeDetails){
+		
 		clearbox();
 		$('#jh_header').append("Job History: " + employeeDetails.firstName + " " + employeeDetails.lastName);
 		
 		var ejHistory = employeeDetails.jobHistory; 
-		
-		//alert(ejHistory);
 		
 		if(ejHistory.length > 0){
 			
@@ -57,4 +57,33 @@ function closebox()
 function clearbox(){
 	  $('#jh_header').empty();
 	  $('#job_history').empty();  
+}
+
+function showDepartmentCheckboxesForSalaryComparison(urlPrefix){
+	
+	var allDeptUrl = urlPrefix + '/all';
+	
+	$.getJSON(allDeptUrl, null, function(departmentList){
+		
+		var deptTable = "<table id=\"hor-minimalist-a\" summary=\"Department List\">";
+		deptTable = deptTable + "<thead align=\"left\">";
+		deptTable = deptTable + "<tr>";
+		deptTable = deptTable + "<th scope=\"col\">Select departments for salary comparison</th>";
+		deptTable = deptTable + "</tr>";
+		deptTable = deptTable + "</thead>";
+		deptTable = deptTable + "<tbody>";
+		
+		for(var i=0; i < departmentList.length; i++){
+			deptTable = deptTable + "<tr>";
+			deptTable = deptTable + "<td><label>";
+			deptTable = deptTable + "<input type=\"checkbox\" value=\"" + departmentList[i].departmentId + "\" name=\"dept\">";
+			deptTable = deptTable +	departmentList[i].departmentName
+			deptTable = deptTable + "</label></td>";
+			deptTable = deptTable + "</tr>";
+		}
+		
+		deptTable = deptTable + "</tbody></table>";
+		
+		$('#departmentList').append(deptTable);
+	});
 }
