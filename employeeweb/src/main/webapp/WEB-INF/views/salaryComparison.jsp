@@ -5,8 +5,10 @@
 <head>
 	<title>Salary Comparison</title>
 	<link href="../../resources/css/employeeweb.css" rel="stylesheet" type="text/css">
+	<link href="../../resources/css/TableBarChart.css" rel="stylesheet" type="text/css">
 	<script src="../../resources/js/jquery-1.11.1.min.js"></script>
 	<script src="../../resources/js/employeeweb.js"></script>
+	<script src="../../resources/js/TableBarChart.js"></script>
 	<script type="text/javascript">
 		$( document ).ready(function() {
 			showDepartmentCheckboxesForSalaryComparison('/hrweb/department');
@@ -21,31 +23,10 @@
 	<div id="departmentList">
 	</div>
 	
-	<c:choose>
-		<c:when test="${fn:length(departmentList) > 0}">
-			<table id="hor-minimalist-a" summary="Department List">
-				<thead align="left">
-					<tr>
-						<th scope="col">Select departments for salary comparison</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="department" items="${departmentList}">
-						<tr>
-							<td>
-								<label>
-									<input type="checkbox" value="${department.departmentId}" name="dept">
-									${department.departmentName}
-								</label>
-							</td>
-							<td></td>							
-						</tr>	
-					</c:forEach>
-				</tbody>
-			</table>		
-		</c:when>
-		<c:otherwise>
-			<p>No departments found for salary comparison
-		</c:otherwise>
-	</c:choose>	
+	<div id="salaryComparisonBarChartSource" style="display:none">
+	</div>
+	
+	<div id="salaryComparisonBarChartTarget">
+	</div>
+	
 </body>
