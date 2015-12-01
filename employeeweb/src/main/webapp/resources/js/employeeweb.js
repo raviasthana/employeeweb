@@ -99,6 +99,10 @@ function showDepartmentCheckboxesForSalaryComparison(urlPrefix){
 
 function compareSalaryForDepartments(urlPrefix){
 	
+	//$('#salaryComparisonBarChartSource').children().remove();
+	$('#barChartTarget').remove();
+	$('#barChartSource').empty();
+	
 	var depts = [];
 	$.each($("input[name='dept']:checked"), function() {
 		depts.push($(this).val());
@@ -138,9 +142,11 @@ function compareSalaryForDepartments(urlPrefix){
 			
 			sourceBarChartTable = sourceBarChartTable + "</tbody></table>";
 			
-			$('#salaryComparisonBarChartSource').append(sourceBarChartTable);
+			$('#salaryComparisonBarChartSource').html(sourceBarChartTable);
 			
-			$('#barChartSource').tableBarChart('#salaryComparisonBarChartTarget', '', false);
+			//add the div element where bar chart would be shown
+			$('#salaryComparisonBarChartTarget').append("<div id=\"barChartTarget\"></div>");
+			$('#barChartSource').tableBarChart('#barChartTarget', '', false);
 			
 		}else{
 			alert('No salary comparison data found for selected departments');
