@@ -64,12 +64,8 @@ function showDepartmentCheckboxesForSalaryComparison(urlPrefix){
 	
 	$.getJSON(allDeptUrl, null, function(departmentList){
 		
-		var deptTable = "<table summary=\"Department List\">";
-		deptTable = deptTable + "<thead align=\"left\">";
-		deptTable = deptTable + "<tr>";
-		deptTable = deptTable + "<th scope=\"col\" colspan=\"10\">Select departments for salary comparison</th>";
-		deptTable = deptTable + "</tr>";
-		deptTable = deptTable + "</thead>";
+		var deptTable = "<p><b>Select departments for salary comparison</b>";
+		deptTable = deptTable +	"<table summary=\"Department List\">";
 		deptTable = deptTable + "<tbody>";
 		var k=0;
 		for(var i=0; i < departmentList.length; i+=k){

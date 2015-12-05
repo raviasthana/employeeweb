@@ -56,14 +56,13 @@
 			background: #D3D3D3;
 		}
 		th {
-			background: #A7C942;
-			border: 1px solid #98BF21;
+			border: 0px;
 			color: #ffffff;
 			font-weight: bold;
 			text-align: left;
 		}
 		td {
-			border: 1px solid #98BF21;
+			border: 0px;
 			text-align: left;
 			font-weight: normal;
 			color: #000000;
@@ -84,7 +83,7 @@
 		}
 		#barChartTarget {
 			width: 1000px;
-			height: 400px;
+			height: 300px;
 		}
 	</style>
 
