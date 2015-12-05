@@ -10,7 +10,7 @@ function viewEmployeeJobProfile(urlPrefix,empId){
 		
 		if(ejHistory.length > 0){
 			
-			var jHistory = "<table id=\"box-table-a\" summary=\"Employee List\"><thead><tr>";
+			var jHistory = "<table summary=\"Employee List\"><thead><tr>";
 			jHistory = jHistory + "<th scope=\"col\">Job Title</th>";
 			jHistory = jHistory + "<th scope=\"col\">Department</th>";
 			jHistory = jHistory + "<th scope=\"col\">Start Date</th>";
@@ -64,7 +64,7 @@ function showDepartmentCheckboxesForSalaryComparison(urlPrefix){
 	
 	$.getJSON(allDeptUrl, null, function(departmentList){
 		
-		var deptTable = "<table id=\"hor-minimalist-b\" summary=\"Department List\">";
+		var deptTable = "<table summary=\"Department List\">";
 		deptTable = deptTable + "<thead align=\"left\">";
 		deptTable = deptTable + "<tr>";
 		deptTable = deptTable + "<th scope=\"col\" colspan=\"10\">Select departments for salary comparison</th>";
@@ -87,7 +87,7 @@ function showDepartmentCheckboxesForSalaryComparison(urlPrefix){
 		
 		deptTable = deptTable + "</tbody>";
 		deptTable = deptTable + "<tfoot><tr><th colspan=\"10\">";
-		deptTable = deptTable + "<input type=\"button\" class=\"pure-button pure-button-primary\" " +
+		deptTable = deptTable + "<input type=\"button\" class=\"btn\" " +
 								"value=\"Compare Salary For Selected Departments\" " +
 								"onclick=\"compareSalaryForDepartments('" + urlPrefix + "')\"/>";
 		deptTable = deptTable +	"</th></tr></tfoot>";

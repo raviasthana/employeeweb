@@ -1,18 +1,52 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false" %>
-<html>
-<head>
-	<title>Salary Comparison</title>
-	<link href="../../resources/css/employeeweb.css" rel="stylesheet" type="text/css">
-	<link href="../../resources/css/TableBarChart.css" rel="stylesheet" type="text/css">
-	<script src="../../resources/js/jquery-1.11.1.min.js"></script>
-	<script src="../../resources/js/employeeweb.js"></script>
-	<script src="../../resources/js/TableBarChart.js"></script>
+
+<div id="wrapper">
+
+	<div class="header">
+		<jsp:include page="header.jsp" />
+	</div>
+
+	<div class="nav-bar">
+		<div class="container">
+			<ul class="nav">
+				<li><a href="/hrweb/">Home</a></li>
+				<li><a href="/hrweb/employee">Employee List</a></li>
+				<li class="active">Salary Comparison</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div class="content">
+		<div class="container">
+			<div class="main">
+				<div id="departmentList">
+				</div>
+	
+				<div id="salaryComparisonBarChartSource" style="display:none">
+				</div>
+	
+				<div id="salaryComparisonBarChartTarget">
+					<div id="barChartTarget">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="footer">
+		<div class="container">
+			&copy; Copyright 2015
+		</div>	
+	</div>
+	
+</div>
+
 	<script type="text/javascript">
 		$( document ).ready(function() {
 			showDepartmentCheckboxesForSalaryComparison('/hrweb/department');
-		});	
+		});
 	</script>
 	<style type="text/css">
 		table {
@@ -53,22 +87,5 @@
 			height: 400px;
 		}
 	</style>
+
 	
-</head>
-<body>
-<h1>
-	Salary Comparison
-</h1>
-	
-	<div id="departmentList">
-	</div>
-	
-	<div id="salaryComparisonBarChartSource" style="display:none">
-	</div>
-	
-	<div id="salaryComparisonBarChartTarget">
-		<div id="barChartTarget">
-		</div>
-	</div>
-	
-</body>
