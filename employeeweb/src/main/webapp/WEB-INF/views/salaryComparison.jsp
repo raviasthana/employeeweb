@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page session="false" %>
 
 <div id="wrapper">
@@ -12,8 +13,13 @@
 		<div class="container">
 			<ul class="nav">
 				<li><a href="/hrweb/">Home</a></li>
-				<li><a href="/hrweb/employee">Employee List</a></li>
+				<security:authorize ifAnyGranted="EMPLOYEE">
+					<li><a href="/hrweb/employee">Employee List</a></li>
+				</security:authorize>
 				<li class="active">Salary Comparison</li>
+				<li>
+					<a href="<c:url value="/hrweb/j_spring_security_logout" />">Logout</a>
+				</li>				
 			</ul>
 		</div>
 	</div>
@@ -26,7 +32,7 @@
 	
 				<div id="salaryComparisonBarChartSource" style="display:none">
 				</div>
-	
+				
 				<div id="salaryComparisonBarChartTarget">
 					<div id="barChartTarget">
 					</div>
@@ -34,13 +40,13 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="footer">
 		<div class="container">
 			&copy; Copyright 2015
 		</div>	
 	</div>
-	
+
 </div>
 
 	<script type="text/javascript">
@@ -83,7 +89,7 @@
 		}
 		#barChartTarget {
 			width: 1000px;
-			height: 300px;
+			height: 400px;
 		}
 	</style>
 

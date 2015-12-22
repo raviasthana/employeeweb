@@ -52,7 +52,8 @@ public class EmployeeController {
 		
 		return "employeeList";
 	}
-
+	
+	/*
 	@RequestMapping(value="/all" , method=RequestMethod.GET)
 	public String all(Model model){
 		
@@ -61,7 +62,7 @@ public class EmployeeController {
 		model.addAttribute("employeeList", employeeList);
 		
 		return "employeeList";
-	}
+	}*/
 	
 	@RequestMapping(value="/{employeeId}/jobhistory", method=RequestMethod.GET)
 	public @ResponseBody Employee jobHistory(@PathVariable long employeeId){

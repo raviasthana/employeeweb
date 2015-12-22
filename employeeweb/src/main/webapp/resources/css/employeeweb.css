@@ -102,7 +102,7 @@ Layout styles
 }
 
 .footer {
-	position: absolute;
+	position:fixed;
 	color: #fff;
 	background: #000;
 	height: 40px; /*height of the footer*/
@@ -156,13 +156,15 @@ ul.nav li.active
 	border-bottom: 1px solid gray;
 }
 
+/*
 .nav a:link { color: white; }
 .nav a:visited { color: white; }
+*/
 
 .nav a:focus
 {
 	color: black;
-	background-color: white;
+	/*background-color: white;*/
 }
 
 .nav a:hover
@@ -207,6 +209,7 @@ Single styles
 	background-color: green;
 }
 
+/*
 .btn:focus
 {
 	color: #fff !important;
@@ -218,6 +221,7 @@ Single styles
 	color: #fff !important;
 	background-color: red;
 }
+*/
 
 .table
 {

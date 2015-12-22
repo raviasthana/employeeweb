@@ -1,6 +1,7 @@
 <%@ page language="java" import="javax.servlet.jsp.PageContext" contentType="text/html; charset=ISO-8859-1"pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page session="false" %>
 
 <div id="wrapper">
@@ -13,7 +14,12 @@
 			<ul class="nav">
 				<li><a href="/hrweb/">Home</a></li>
 				<li class="active">Employee List</li>
-				<li><a href="#">Salary Comparison</a></li>
+				<security:authorize ifAnyGranted="DEPARTMENT">
+					<li><a href="/hrweb/department">Salary Comparison</a></li>
+				</security:authorize>
+				<li>
+					<a href="<c:url value="/hrweb/j_spring_security_logout" />">Logout</a>
+				</li>				
 			</ul>
 		</div>
 	</div>
