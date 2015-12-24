@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Table(name="DEPARTMENTS")
 @JsonIgnoreProperties({"manager","location"})
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@departmentId")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@departmentId")
 public class Department implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

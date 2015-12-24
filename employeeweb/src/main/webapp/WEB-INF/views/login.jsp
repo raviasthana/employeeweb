@@ -51,14 +51,14 @@
 						</tr>
 					</table>
 					<p>
-					<div style="width: 250px;">
+					<div style="width: 250px;margin-left: 20px;">
 						<div style="float: left;">
-							<input type="submit" name="submit" value="submit" />
+							<input class="btn" type="submit" name="submit" value="submit" />
 						</div>
 						<div style="float: right;">
-							<input type="reset" name="reset" />
+							<input class="btn" type="reset" name="reset" />
 						</div>
-					</div>					
+					</div>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form>
 				

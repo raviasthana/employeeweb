@@ -21,7 +21,7 @@ function viewEmployeeJobProfile(urlPrefix,empId){
 			for(var i=0; i < ejHistory.length; i++){
 				jHistory = jHistory + "<tr>";
 				jHistory = jHistory + "<td>" + ejHistory[i].job.jobTitle + "</td>";
-				jHistory = jHistory + "<td>" + "&nbsp;" + "</td>";
+				jHistory = jHistory + "<td>" + ejHistory[i].department.departmentName + "</td>";
 				jHistory = jHistory + "<td>" + ejHistory[i].jobHistoryId.startDate + "</td>";
 				jHistory = jHistory + "<td>" + ejHistory[i].endDate + "</td>";
 				jHistory = jHistory + "</tr>";

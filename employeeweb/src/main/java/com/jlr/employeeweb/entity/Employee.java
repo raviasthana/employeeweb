@@ -25,6 +25,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -69,6 +70,7 @@ public class Employee implements Serializable {
 	private Department department;
 	
 	@OneToMany(mappedBy="employee", fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private Set<JobHistory> jobHistory = new HashSet<>();
 	
 	public Set<JobHistory> getJobHistory() {

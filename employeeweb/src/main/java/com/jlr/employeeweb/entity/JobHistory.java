@@ -21,15 +21,15 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Cacheable
 @Cache(usage=CacheConcurrencyStrategy.READ_ONLY)
 @Table(name="JOB_HISTORY")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jobId")
+//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@jobId")
 public class JobHistory implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -62,6 +62,7 @@ public class JobHistory implements Serializable {
 		//@JoinColumn(name="JHIST_EMP_FK", referencedColumnName="EMPLOYEE_ID")
 	})
 	@ManyToOne(cascade={CascadeType.ALL}, fetch=FetchType.LAZY)
+	@JsonBackReference
 	private Employee employee;
 	
 	public Employee getEmployee() {
